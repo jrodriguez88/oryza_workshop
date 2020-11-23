@@ -1,0 +1,121 @@
+*-------------------------------------------------------------------------------*
+* CALIBRIN.DAT                                                                  *
+* THE CONTROL FILE FOR AUTOMATIC CALIBRATION                                    *
+* USE with ORYZA (version 3.0 AND 4.0)                                          *
+* Date: Jan 2012                                                                *
+*                                                                               *
+* DEVELOPED BY DR. TAO LI                                                       *
+*-------------------------------------------------------------------------------*
+*-------------------------------------------------------------------------------*
+*1. Input files
+*-------------------------------------------------------------------------------*
+FILEON = 'C:\COURSE\Soil\RES.DAT'
+FILEOL = 'C:\COURSE\Soil\MODEL.LOG' 
+FILEIR = 'C:\COURSE\Soil\Reruns.rer'        ! Real experiment rerun
+FILEIT = 'C:\COURSE\Soil\EXPLORE3.exp'      ! Experimental data file
+FILEI1 = 'C:\COURSE\Soil\IR72D92t.CRP'      ! Crop data file
+FILEI2 = 'C:\COURSE\Soil\PADDY.sol'         ! Soil data (PADDY model)
+
+
+*-------------------------------------------------------------------------------*
+*2. CALIBRATION PARAMETER CONTROLS                                            
+*-------------------------------------------------------------------------------*
+RERUNS   = 1000    ! HOW MANY RERUNS WILL BE MADE
+INRERUNS = 0       ! THE MULTIPLE ENVIRONMENTS
+USEREFER = 'YES'   ! Whether the calibration conducted from referenced  
+                    ! crop and/or soil file, default is 'YES' when 
+                    ! the variable is not set as 'YES',
+
+OUTFOLDER = 'C:\COURSE\Soil\'     ! THE PLACE FOR CALIBRATION OUTPUTS
+OUTCROP   = 'IR72D92t_C.crp'
+OUTSOIL   = 'C_Soil.sol'
+ORYZA     = 'C:\COURSE\Soil\ORYZA3.exe'
+
+
+*-------------------------------------------------------------------------------*
+*3. CROP PARAMETERS WITH SINGLE VALUES FOR CALIBRATION
+*-------------------------------------------------------------------------------*
+*!* THE NAME OF CROP PARAMETERS WITH SINGLE VALUES
+CROPSVN = 'FNTRT','FSTR','RGRLMX','RGRLMN','SLAMAX','ASLA','BSLA','DSLA' 
+
+*!* Use change fraction based on the value of reference genotype
+CROPSVR = 0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25
+
+*!* THE MAXIMUM VALUES OF EACH CROP 'CROPSVN' if CHANGE RANGE WAS NOT 
+*!* PROVIDED
+CROPSVMA = 0.05, 0.02, 0.04, 0.005,0.5,0.5,0.5,0.5
+
+*!* THE MINIMUM VALUES OF EACH CROP 'CROPSVN'
+CROPSVMI = 0.75, 0.5, 0.10, 0.35,0.5,0.5,0.5,0.5
+
+
+*------------------------------------------------------------------------------*
+*Optional: If parameters for phenology is listed in the single value 
+*          parameters, calibration for phenology is activated 
+*------------------------------------------------------------------------------*
+* In this case, you can consider to give data for 'GDURAT', and give  
+* critical value for 'DVS' if 'DVS_OBS' is given in experiment file.                           
+*------------------------------------------------------------------------------*
+
+
+*------------------------------------------------------------------------------*
+*4. CROP PARAMETERS WITH TABLE VALUES FOR CALIBRATION
+*------------------------------------------------------------------------------*
+*!* THE NAME OF CROP PARAMETERS WITH TABLE VALUES
+CROPTVN = 'FSHTB','FSOTB','FLVTB','FSTTB','DRLVT' !, 'SLATB'   
+
+*!* Use change fraction based on the value of reference genotype
+CROPTVR = 0.25,0.25,0.25,0.25,0.25 !,0.25   
+
+* The maximum and minimum values provided if range is not available
+*CROPTVMA = 0.5,0.5,0.5,0.5,0.5 !,0.5 !*THE MAXIMUM VALUES OF PARAMETERS
+*CROPTVMI = 0.5,0.5,0.5,0.5,0.5 !,0.5 !*THE MINIMUM VALUES OF PARAMETERS
+
+*The growth stage effective for parameter change
+CROPTXMI = 0.0,0.65,0.0,0.0,0.65 !,0.0  !* THE MINIMUM VALUES OF X
+CROPTXMA = 1.0,2.5,1.2,2.5,2.5 !,2.5    !* THE MAXIMUM VALUES OF X 
+
+
+*------------------------------------------------------------------------------*
+*5. SOIL PARAMETERS WITH SINGLE VALUES FOR CALIBRATION
+*------------------------------------------------------------------------------*
+*SOILSVN =  'FIXPERC'  !* THE NAMES OF SOIL PARAMETERS WITH SINGLE VALUES
+*SOILSVR =  0.99 !* Use change fraction based on the value of reference soil
+*SOILSVMA = 0.90 !* THE MAXIMUM VALUES OF SOIL PARMETERS WITH SINGLE VALUES
+*SOILSVMI = 0.90 !* THE MINIMUM VALUES OF SOIL PARMETERS WITH SINGLE VALUES
+
+
+*------------------------------------------------------------------------------*
+*6. SOIL PARAMETERS WITH MULTIPLE VALUES FOR CALIBRATION
+*------------------------------------------------------------------------------*
+*SOILMVN = 'KST','VGA','VGL' !* THE NAMES OF SOIL PARAMETERS WITH MULTIPLE VALUES
+*SOILMVR = 0.45,0.75,0.90 !* Use change fraction based on the value of reference soil
+*SOILMVMA = 0.9,0.5,0.5   !* THE MAXIMUM VALUE RANGES OF PARAMETER
+*SOILMVMI = 0.9,0.5,0.5   !* THE MINIMUM VALUE RANGES OF PARAMETER
+
+
+*------------------------------------------------------------------------------*
+*7. GIVE CRITICAL METHODS: 1 - FOR RMSEn; 2 - FOR MODELING EFFICIENCY. 
+*   NORMALLY, IF THE MINIMUM OBSERVATION NUMBER IS LESS THAN 4, USE 
+*   METHODS 1, OTHERWISE USE 2; CRITICAL VALUE SHOULD BE CORRESPONDING 
+*   TO THE METHODS, DEFAULT IS 2
+*------------------------------------------------------------------------------*
+* FOR METHODS = 1, THE CRITICAL VALUE FOR THE BEST IS APPROXIMATE TO 0.0
+* FOR METHODS = 2, THE CRITICAL VALUE FOR THE BEST IS APPROXIMATE TO 1.0
+CMETHODS = 1
+
+
+*------------------------------------------------------------------------------*
+*8. GIVE CRITICAL VALUE FOR ALL OBSERVED VARIABLES, WHICH ARE USED 
+*   TO CHECK THE CALIBRATION IF THE CRITICAL VALUE WAS NOT GIVEN, 
+*   THEN PROGRAM TREATS 300% DIFFERENCE IS ACCEPTABLE FOR THIS VARIABLE
+CRITVARS = 'WSO','WAGT','WLVG','WLVD','WST','LAI','NFLV','MSKPA3'
+CRITVALU = 0.10,0.15,0.20,0.25,0.20,0.15,0.30,0.80
+
+
+*------------------------------------------------------------------------------*
+* Optional: The FINAL COMMERCIAL YIELD (Grain biomass with 14% moisture) can 
+*           also be the critical variable for calibration 
+*------------------------------------------------------------------------------*
+*YIELDOBS =1140.2,2170.6,2210.8,3091.5 ! The grain yield from different environments
+

@@ -1,0 +1,7 @@
+9,1,0                    ! Layers, whether use compact factor (YES=1,NO=0), whether calculate EC (YES=1.0, NO=0)
+0.35,2*0.38,3*0.40,0.42,0.46,0.46           ! soil clay contents, fraction
+0.42,0.46,0.40,2*0.46,0.22,0.18,0.12,0.12   ! Sand contents, fraction 
+0.0089,0.00735,4*0.0015,3*0.001	            ! ORGANIC MATTER CONTENT (fraction)
+3*1.0,6*0.0                                 ! TOP SOIL (=1.0) OR NON TOP SOIL (=0.0)
+0.90,1.0,1.1,1.05,5*1.0	 ! Compact factor, Paddled soil or new tilled soil <1.0, 
+                         ! normal soil=1.0, compacted soil >1.0       
