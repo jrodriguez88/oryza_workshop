@@ -8,14 +8,15 @@ library(tidyverse)
 library(lubridate)
 library(data.table)
 library(skimr)
+source("https://raw.githubusercontent.com/jrodriguez88/csmt/master/write_files/write_wth_oryza.R", encoding = "UTF-8")
+
 
 
 ## 2. leer datos
 
-data <- read_csv("practica_1/data/SDTO_wth.csv")    # SDTO
-#data <- read_csv("practica_1/data/VVME_wth.csv")    # VVME
+data <- read_csv("practica_1/data/TEST_wth.csv")    # SDTO
 metadata <- read_tsv("practica_1/data/info.txt")
-localidad <- "XXXX"
+localidad <- "TEST"
 
 ## 3. Analizar datos
 
@@ -77,48 +78,14 @@ write_csv(data_2016_oryza, "practica_1/output/data_2016.csv")
 
 ## Funcion para crear multiples archivos ORYZA-WTH  --> https://github.com/jrodriguez88/csmt 
 
-make_wth_oryza <- function(data, path, local, lat, lon, alt, stn=1) {
-  
-  stopifnot(require(tidyverse)==T)
-  stopifnot(require(lubridate)==T)
-  
-  DATA <- data %>%
-    mutate(DATE = date,
-           Station_number = stn,
-           Year = year(DATE),
-           Day = yday(DATE),
-           SRAD = round(srad*1000, 2),
-           TMAX = round(tmax, 2),
-           TMIN = round(tmin, 2),
-           RAIN = round(rain, 2),
-           VPD = -99, 
-           WS = -99) %>%
-    select(Station_number, Year, Day, SRAD, TMIN, TMAX, VPD, WS, RAIN)
-  
-  
-  
-  dir.create(paste0(path,"/WTH"), showWarnings = FALSE)
-  set_head <- paste(lon, lat, alt, 0, 0, sep = ",")    
-  #DATA=read.table(file, head=T)  
-  data_list <- split(DATA, DATA$Year)
-  lapply(data_list, function(x){
-    fname <- paste(path,"/WTH/" ,local, stn,".", str_sub(unique(x$Year), 2), sep = "")
-    sink(file=fname)
-    cat(set_head)
-    cat("\n")
-    write.table(x ,sep=",",row.names=F,col.names=F)
-    sink()})
-  
-}
-
 
 ## Ejecutar la funcion
 
 ## Para un solo año
-make_wth_oryza(data_2016, "practica_1/output/", localidad, 3.91, -75.0, 415, stn = 1)
+write_wth_oryza(data_2016, "practica_1/output/", localidad, 3.91, -75.0, 415, stn = 1)
 
 ## Para una serie historica
-make_wth_oryza(data, "practica_1/output/", localidad , 3.91, -75.0, 415, stn = 1)
+write_wth_oryza(data, "practica_1/output/", localidad , 3.91, -75.0, 415, stn = 1)
   
 
 
