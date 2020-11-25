@@ -54,11 +54,11 @@ skimr::skim(data)
 #     8      mean wind speed         m s-1                                                        
 #     9      precipitation          mm d-1
 
-# filtrar para un año . Ejemplo = 2016
-data_2016 <- data %>% filter(year(date) == 2016) 
+# filtrar para un año . Ejemplo = 2015
+data_2015 <- data %>% filter(year(date) == 2015) 
 
 # Organizar datos en orden
-data_2016_oryza <- data_2016 %>%
+data_2015_oryza <- data_2015 %>%
   mutate(stn = 1, 
          Year = year(date),
          Day = yday(date), 
@@ -71,7 +71,7 @@ data_2016_oryza <- data_2016 %>%
   select(stn, Year, Day, irrad, tmin, tmax, vpd, wsp, rain)
 
 # Guardar como csv
-write_csv(data_2016_oryza, "practica_1/output/data_2016.csv")
+write_csv(data_2015_oryza, "practica_1/output/data_2016.csv")
 
 ## ---> Trabajar en editor de texto
 
@@ -82,7 +82,7 @@ write_csv(data_2016_oryza, "practica_1/output/data_2016.csv")
 ## Ejecutar la funcion
 
 ## Para un solo año
-write_wth_oryza(data_2016, "practica_1/output/", localidad, 3.91, -75.0, 415, stn = 1)
+write_wth_oryza(data_2015, "practica_1/output/", localidad, 3.91, -75.0, 415, stn = 1)
 
 ## Para una serie historica
 write_wth_oryza(data, "practica_1/output/", localidad , 3.91, -75.0, 415, stn = 1)
