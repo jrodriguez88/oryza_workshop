@@ -1,0 +1,14 @@
+*----------------------------------------------------------*
+* Sample rerun file for ORYZA V3 rice growth model         *
+* File name   : reruns.rer                                 *
+*----------------------------------------------------------*
+*-- Rerun set 1
+*IYEAR = 2016
+*EMYR = 2016
+
+*-- Rerun set 2
+*IYEAR = 2017
+*EMYR = 2017
+
+
+

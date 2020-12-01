@@ -1,0 +1,17 @@
+*PARAMFILE = PARAM.in
+strun = 1
+*endrun = 72
+*----------------------------------------------------------------------*
+* control file for ORYZA model AUTO-CALIBRATION                        *
+*----------------------------------------------------------------------*
+FILEOP = 'PARAM.OUT'
+FILEOR = 'DRATE.OUT'
+FILEOL = 'MODEL.LOG'
+FILEIR = 'reruns.rer' 
+FILEIT = 'VAIR.exp'
+FILEI1 = 'F2000.CRP'
+PRDEL  = 1.
+IPFORM = 5
+COPINF = 'N'
+DELTMP = 'N'
+IFLAG  = 1100
